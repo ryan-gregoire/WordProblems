@@ -7,11 +7,15 @@ namespace App
 	class Names
 	{
 		public static Random r = new Random();
+		public readonly object Name = new();
+		
 
 		public static int randomNum(int a, int b)
 		{
 			return r.Next(a, b + 1);
 		}
+
+		
 
 		public static string fruitNames()
 		{
@@ -102,14 +106,46 @@ namespace App
 
 		}
 
+		public static string NameOne()
+		{
+			List<string> firstName = new List<string>();
+			firstName.Add("James");
+			firstName.Add("John");
+			firstName.Add("Paul");
+			firstName.Add("Joe");
+
+			int randomName = r.Next(firstName.Count);
+			return firstName[randomName];
+		}
+
+		public static string NameTwo()
+		{
+
+			List<string> firstName = new List<string>();
+			firstName.Add("Joey");
+			firstName.Add("Luke");
+			firstName.Add("Matt");
+			firstName.Add("Kyle");
+
+			int randomName = r.Next(firstName.Count);
+			return firstName[randomName];
+
+		}
+
 
 		public void WelcomeUser(params string[] message)
 		{
 
-			for(int i = 0; i < message.Length; i++)
+			lock (Name)
 			{
-				Console.WriteLine((message[i]));
+
+				for (int i = 0; i < message.Length; i++)
+				{
+					Console.WriteLine((message[i]));
+				}
+
 			}
+			
 		}
 
 	}
@@ -119,6 +155,7 @@ namespace App
 	{
 		public static int Add(int a, int b)
 		{
+
 			return a + b;
 		}
 
@@ -182,18 +219,20 @@ namespace App
 			int num2 = Names.randomNum(0, 10);
 
 			var isNum = num1 <= 3 ? Names.fruitName1() : Names.FruitNames1();
-			var isNum2 = num1 <= 3 ? Names.FruitNames1() : Names.fruitNames2(); ;
+			var isNum2 = num1 < 3 ? Names.FruitNames2() : Names.FruitNames1();
 
 
-
-			Console.WriteLine($"What is: {num1} {op} {num2}");
-			int answer = Convert.ToInt16(Console.ReadLine());
 
 			Console.WriteLine("Enter Your Name: ");
 			string? name = Console.ReadLine();
 
 			n.WelcomeUser("Welcome to: " + name);
 
+			Console.WriteLine("Op: " + op);
+
+			Console.WriteLine($"{Names.NameOne()} " +
+				$"Had: {num1} {isNum} {Names.NameOne()} Gave {num2} {isNum2} to {Names.NameTwo()}");
+			int answer = Convert.ToInt16(Console.ReadLine());
 
 
 			MathFunctions.isAddingNum(answer, num1, num2);
