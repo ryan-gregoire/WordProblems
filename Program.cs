@@ -192,9 +192,12 @@ namespace App
 
 			MathFunctions.isAddingNum(answer, num1, num2);
 			MathFunctions.isSubNum(answer, num1, num2);
+<<<<<<< HEAD
 			MathFunctions.isMulNum(answer, num1, num2);
 
 
+=======
+>>>>>>> 10b8288b3ae215cc3432c1fa34625efbd116e370
 			
 			Console.ReadLine();
 
