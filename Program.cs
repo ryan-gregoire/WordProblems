@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace App
 {
@@ -179,6 +180,11 @@ namespace App
 			
 			int num1 = Names.randomNum(0, 10);
 			int num2 = Names.randomNum(0, 10);
+
+			var isNum = num1 <= 3 ? Names.fruitName1() : Names.FruitNames1();
+			var isNum2 = num1 <= 3 ? Names.FruitNames1() : Names.fruitNames2(); ;
+
+
 
 			Console.WriteLine($"What is: {num1} {op} {num2}");
 			int answer = Convert.ToInt16(Console.ReadLine());
